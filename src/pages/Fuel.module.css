@@ -1,0 +1,273 @@
+.stepLabel { font-size:10px; color:#ffffff; letter-spacing:2px; text-transform:uppercase; }
+.title { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:3px; color:#fff; font-weight:400; }
+.todayLabel { font-size:11px; color:#ffffff; letter-spacing:0.5px; }
+.formStack { display:flex; flex-direction:column; gap:1rem; margin-top:0.5rem; }
+.field { display:flex; flex-direction:column; gap:8px; }
+.label { font-size:10px; color:#ffffff; letter-spacing:2px; text-transform:uppercase; }
+.input { width:100%; background:#0f0f0f; border:0.5px solid rgba(255,255,255,0.1); border-radius:10px; padding:14px 16px; font-size:15px; color:#fff; outline:none; transition:border-color 0.2s; }
+.input:focus { border-color:rgba(212,175,55,0.5); }
+.input::placeholder { color:#ffffff; }
+.radioRow { display:flex; gap:0.75rem; }
+.radioBtn { flex:1; padding:11px; background:#0f0f0f; border:0.5px solid rgba(255,255,255,0.1); border-radius:10px; color:#ffffff; font-size:13px; transition:all 0.2s; }
+.radioBtn:hover { border-color:rgba(212,175,55,0.3); color:#D4AF37; }
+.radioActive { border-color:rgba(212,175,55,0.5) !important; color:#D4AF37 !important; background:rgba(212,175,55,0.06) !important; }
+.goalCards { display:flex; flex-direction:column; gap:1rem; margin-top:0.5rem; }
+.goalCard {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 1.25rem;
+  border-radius: 16px;
+  text-align: left;
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.goalCard:active { transform: scale(0.98); }
+.lossCard { background:#100d08; border-color:rgba(249,115,22,0.2); }
+.lossCard:hover { border-color:rgba(249,115,22,0.5); }
+.gainCard { background:#080f0d; border-color:rgba(74,222,128,0.15); }
+.gainCard:hover { border-color:rgba(74,222,128,0.4); }
+.vegCard { background:#080f08; border-color:rgba(74,222,128,0.15); }
+.vegCard:hover { border-color:rgba(74,222,128,0.4); }
+.nonvegCard { background:#100808; border-color:rgba(248,113,113,0.15); }
+.nonvegCard:hover { border-color:rgba(248,113,113,0.4); }
+.goalEmoji { font-size:32px; margin-bottom:4px; }
+.goalTitle { font-family:'Bebas Neue',sans-serif; font-size:24px; font-weight:400; letter-spacing:2px; color:#fff; }
+.goalDesc { font-size:12px; color:#ffffff; letter-spacing:0.5px; }
+.bmiTag { font-size:12px; color:#ffffff; letter-spacing:0.5px; margin-bottom:1.25rem; padding:8px 14px; background:#0f0f0f; border:0.5px solid rgba(255,255,255,0.06); border-radius:8px; display:inline-block; }
+.macroGrid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+.macroCard { background:#0f0f0f; border:0.5px solid rgba(255,255,255,0.06); border-radius:12px; padding:1rem 1.1rem; display:flex; flex-direction:column; gap:4px; }
+.macroCard:first-child { grid-column:1 / -1; }
+.macroLabel { font-size:10px; color:#ffffff; letter-spacing:2px; text-transform:uppercase; }
+.macroVal { font-family:'Bebas Neue',sans-serif; font-size:28px; font-weight:400; letter-spacing:1px; }
+.prefBadge { font-size:10px; color:#ffffff; letter-spacing:1px; }
+.switchBtn { margin-left:auto; background:transparent; border:0.5px solid rgba(255,255,255,0.1); color:#666; padding:6px 14px; border-radius:8px; font-size:12px; transition:all 0.2s; }
+.switchBtn:hover { border-color:rgba(212,175,55,0.3); color:#D4AF37; }
+.foodGrid { display:flex; flex-direction:column; gap:0.75rem; }
+.foodCard { background:#0f0f0f; border:0.5px solid rgba(255,255,255,0.07); border-radius:14px; padding:1.1rem 1.25rem; transition:border-color 0.2s; }
+.foodCard:hover { border-color:rgba(212,175,55,0.25); }
+.foodTop { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:0.6rem; }
+.foodName { font-size:15px; color:#e8e8e8; font-weight:500; }
+.foodPer { font-size:11px; color:#ffffff; }
+.foodMacros { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:0.9rem; }
+.macPill { font-size:11px; background:rgba(255,255,255,0.04); padding:3px 8px; border-radius:20px; letter-spacing:0.3px; }
+.addBtn { width:100%; padding:10px; background:rgba(212,175,55,0.08); border:0.5px solid rgba(212,175,55,0.25); border-radius:9px; color:#D4AF37; font-size:13px; letter-spacing:0.5px; transition:all 0.2s; }
+.addBtn:hover { background:rgba(212,175,55,0.14); border-color:rgba(212,175,55,0.5); }
+.successBanner { background:rgba(74,222,128,0.08); border:0.5px solid rgba(74,222,128,0.25); border-radius:12px; padding:1rem 1.25rem; font-size:14px; color:#4ade80; text-align:center; margin-bottom:1rem; }
+.macroSection { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.5rem; }
+.macroTrackCard { background:#0f0f0f; border:0.5px solid rgba(255,255,255,0.06); border-radius:12px; padding:1rem 1.1rem; }
+.macroTrackTop { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.macroTrackLabel { font-size:11px; color:#ffffff; letter-spacing:1.5px; text-transform:uppercase; }
+.macroTrackNums { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:0.5px; }
+.macroBar { height:6px; background:#1a1a1a; border-radius:6px; overflow:hidden; margin-bottom:6px; }
+.macroFill { height:100%; border-radius:6px; transition:width 0.5s ease; }
+.macroRemain { font-size:11px; color:#444; text-align:right; }
+.intakeSection { margin-bottom:2rem; }
+.intakeHeader { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+.intakeTitle { font-family:'Bebas Neue',sans-serif; font-size:18px; font-weight:400; letter-spacing:2px; color:#fff; }
+.addFoodBtn { background:transparent; border:0.5px solid rgba(212,175,55,0.3); color:#D4AF37; padding:7px 14px; border-radius:8px; font-size:12px; letter-spacing:0.5px; transition:all 0.2s; }
+.addFoodBtn:hover { background:rgba(212,175,55,0.08); }
+.emptyIntake { text-align:center; padding:2rem; background:#0f0f0f; border:0.5px solid rgba(255,255,255,0.05); border-radius:12px; color:#ffffff; font-size:13px; }
+.intakeList { display:flex; flex-direction:column; gap:0.5rem; }
+.intakeItem { display:flex; align-items:center; justify-content:space-between; padding:0.9rem 1rem; background:#0f0f0f; border:0.5px solid rgba(255,255,255,0.06); border-radius:10px; gap:0.75rem; }
+.intakeItemLeft { flex:1; min-width:0; }
+.intakeItemName { font-size:14px; color:#ddd; font-weight:500; margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.intakeItemMacros { display:flex; gap:6px; flex-wrap:wrap; }
+.intakeItemMacros span { font-size:11px; background:rgba(255,255,255,0.03); padding:2px 7px; border-radius:20px; }
+.removeBtn { background:transparent; border:none; color:#333; font-size:14px; padding:4px 8px; transition:color 0.2s; flex-shrink:0; }
+.removeBtn:hover { color:#f87171; }
+.noSetup { text-align:center; padding:3rem 1rem; color:#ffffff; font-size:14px; }
+.setupBtn { margin-left:auto; background:transparent; border:0.5px solid rgba(212,175,55,0.3); color:#D4AF37; padding:6px 14px; border-radius:8px; font-size:12px; }
+.qtyRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #161616;
+  border: 0.5px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 6px 10px;
+  margin-bottom: 0.75rem;
+}
+
+.qtyBtn {
+  width: 32px;
+  height: 32px;
+  background: #1e1e1e;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #D4AF37;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.qtyBtn:hover { background: rgba(212,175,55,0.15); border-color: rgba(212,175,55,0.4); }
+.qtyBtn:active { transform: scale(0.95); }
+
+.qtyDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.qtyNum {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  color: #fff;
+  letter-spacing: 1px;
+  min-width: 48px;
+  text-align: center;
+}
+
+.qtyUnit {
+  font-size: 12px;
+  color: #555;
+}.resetCountdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #555;
+  background: #0f0f0f;
+  border: 0.5px solid rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 8px 14px;
+  margin-bottom: 1rem;
+}
+
+.resetCountdown strong {
+  color: #D4AF37;
+}
+
+.resetIcon {
+  font-size: 14px;
+}
+
+.resetGoalBtn {
+  margin-left: auto;
+  background: transparent;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  color: #666;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+.resetGoalBtn:hover {
+  border-color: rgba(212,175,55,0.3);
+  color: #D4AF37;
+}
+
+.intakeQty {
+  font-size: 11px;
+  color: #555;
+  font-weight: 400;
+}.foodCardSelected {
+  border-color: rgba(212,175,55,0.5) !important;
+  background: rgba(212,175,55,0.04) !important;
+}
+
+.removeBtn2 {
+  width: 100%;
+  padding: 10px;
+  background: rgba(74,222,128,0.08);
+  border: 0.5px solid rgba(74,222,128,0.3);
+  border-radius: 9px;
+  color: #4ade80;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.removeBtn2:hover {
+  background: rgba(74,222,128,0.15);
+}
+
+.trackBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0f0f0f;
+  border-top: 0.5px solid rgba(212,175,55,0.3);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  z-index: 50;
+}
+
+.trackBarLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.trackBarCount {
+  font-size: 13px;
+  color: #D4AF37;
+  font-weight: 500;
+}
+
+.trackBarMacros {
+  font-size: 11px;
+  color: #666;
+}
+
+.trackBarBtn {
+  background: #D4AF37;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.trackBarBtn:hover {
+  background: #e0c048;
+  transform: translateY(-1px);
+}.setupNote {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(212,175,55,0.04);
+  border: 1px solid rgba(212,175,55,0.1);
+  border-radius: 12px;
+}.goalCardLeft {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  flex: 1;
+}
+
+.goalArrow {
+  font-size: 18px;
+  color: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.goalCalNote {
+  font-size: 11px;
+  color: #555;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.maintainCard {
+  background: #080810;
+  border-color: rgba(139,92,246,0.2);
+}
+.maintainCard:hover {
+  border-color: rgba(139,92,246,0.5);
+}

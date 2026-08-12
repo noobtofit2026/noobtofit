@@ -1,0 +1,288 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 1.25rem 5rem;
+  background: #080808;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  gap: 0.875rem;
+}
+
+.backBtn {
+  width: 38px;
+  height: 38px;
+  background: #181818;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.stepLabel {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #D4AF37;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 3px;
+  color: #fff;
+}
+
+.summaryCard {
+  background: linear-gradient(135deg, #111008 0%, #0d0d0d 100%);
+  border: 1px solid rgba(212,175,55,0.2);
+  border-radius: 18px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.summaryCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent);
+}
+
+.summaryTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.summaryName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.summarySub {
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.goalBadge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #D4AF37;
+  background: rgba(212,175,55,0.1);
+  border: 1px solid rgba(212,175,55,0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.bmiRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.bmiLabel {
+  font-size: 11px;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.bmiValue {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: #D4AF37;
+  letter-spacing: 1px;
+}
+
+.bmiNote {
+  font-size: 11px;
+  color: #ffffff;
+  background: rgba(255,255,255,0.05);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.sectionNote {
+  font-size: 12px;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  padding: 0 0.25rem;
+  font-style: italic;
+}
+
+.macroList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.macroCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.1rem;
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  animation: fadeUp 0.4s ease forwards;
+  opacity: 0;
+  transition: border-color 0.2s;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.macroLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.macroIcon {
+  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.macroLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.macroDesc {
+  font-size: 11px;
+  color: #555;
+  max-width: 160px;
+  line-height: 1.4;
+}
+
+.macroRight {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.macroValue {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.macroUnit {
+  font-size: 10px;
+  color: #ffffff;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.macroRange {
+  font-size: 10px;
+  color: #444;
+  margin-top: 3px;
+}
+
+.noteBox {
+  background: rgba(212,175,55,0.04);
+  border: 1px solid rgba(212,175,55,0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 12px;
+  color: #ffffff;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}.statsRow {
+  display: flex;
+  align-items: center;
+  padding-top: 0.875rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin-top: 0.875rem;
+}
+
+.statItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.statVal {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  color: #D4AF37;
+  letter-spacing: 1px;
+}
+
+.statLbl {
+  font-size: 10px;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.statDivider {
+  width: 1px;
+  height: 30px;
+  background: rgba(255,255,255,0.06);
+}
+
+.macroIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.calCheck {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #4ade80;
+  background: rgba(74,222,128,0.06);
+  border: 1px solid rgba(74,222,128,0.15);
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 1rem;
+}
+
+.calCheckIcon {
+  font-size: 14px;
+  flex-shrink: 0;
+}

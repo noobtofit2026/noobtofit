@@ -1,0 +1,262 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 1.25rem 100px;
+  background: #080808;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 40% at 20% 0%, rgba(212,175,55,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 30% at 80% 90%, rgba(212,175,55,0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.topbar {
+  padding: 1.5rem 0 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 2px;
+}
+
+.sectionLbl {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #fff;
+  margin-bottom: 0.875rem;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background: rgba(255,255,255,0.025);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 1.25rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prRow {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.prBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 64px;
+  flex-shrink: 0;
+}
+
+.prCircle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid #D4AF37;
+  background: rgba(212,175,55,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.prWeight {
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.prUnit {
+  color: rgba(255,255,255,0.5);
+  font-size: 9px;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.prName {
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  text-align: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+.input, .select {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 15px;
+  color: #fff;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.input:focus, .select:focus {
+  border-color: rgba(212,175,55,0.6);
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.weightRow {
+  display: flex;
+}
+
+.weightInput {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+.unitSelect {
+  width: 68px;
+  flex-shrink: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: rgba(255,255,255,0.6);
+}
+
+.error {
+  font-size: 13px;
+  color: #f87171;
+}
+
+.submitBtn {
+  margin-top: 2px;
+  background: #D4AF37;
+  color: #08060d;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  padding: 13px;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.submitBtn:active { transform: scale(0.98); }
+.submitBtn:disabled { opacity: 0.5; }
+
+.emptyState {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.emptyTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.emptyDesc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 6px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  padding: 0 8px 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.table td {
+  padding: 10px 8px 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: #fff;
+}
+
+.table tr:last-child td { border-bottom: none; }
+
+.dayCell { color: #D4AF37; font-weight: 600; white-space: nowrap; }
+.dateCell { color: rgba(255,255,255,0.5); white-space: nowrap; }
+
+.removeBtn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.removeBtn:disabled { opacity: 0.4; }
+
+.loading {
+  text-align: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+}

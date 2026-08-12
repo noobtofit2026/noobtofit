@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #D4AF37;
+  --gold-light: #F0C93A;
+  --black: #080808;
+  --card: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.08);
+  --text: #fff;
+  --muted: #ffffff;
+  --dim: #ffffff;
+  --bronze: #CD7F32;
+  --silver: #C0C0C0;
+  --gold-rank: #FFD700;
+  --elite: #a78bfa;
+}
+
+html, body { height: 100%; background: var(--black); color: var(--text); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+button { font-family: 'Inter', sans-serif; cursor: pointer; }
+input { font-family: 'Inter', sans-serif; }
+
+.gold-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #D4AF37, #F0C93A);
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.gold-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(212,175,55,0.35); }
+.gold-btn:active { transform: scale(0.98); }
+.gold-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.ghost-btn {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  transition: all 0.2s;
+}
+.ghost-btn:hover { border-color: rgba(212,175,55,0.3); color: var(--gold); }
+
+/* Page bottom padding for nav */
+.page-content { padding-bottom: 80px; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 0; }

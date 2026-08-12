@@ -1,0 +1,191 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 1.25rem 5rem;
+  background: #060606;
+  position: relative;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 50% at 50% -10%, rgba(167,139,250,0.08) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.backBtn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: #a78bfa; }
+.title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; font-weight: 400; letter-spacing: 3px; color: #fff; }
+
+.rankCard {
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(167,139,250,0.15);
+  border-radius: 22px;
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.rankCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167,139,250,0.5), transparent);
+}
+
+.rankCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.rankCardLeft { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.rankCardName { font-size: 18px; font-weight: 700; color: #fff; }
+.rankCardSub { font-size: 12px; color: #ffffff; }
+
+.rankBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid;
+  width: fit-content;
+  margin-top: 4px;
+}
+.rankBadgeIcon { font-size: 12px; }
+.rankBadgeName { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; }
+.rankDesc { font-size: 11px; }
+
+.rankCircleWrap { position: relative; width: 90px; height: 90px; flex-shrink: 0; }
+.rankCircleText { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.rankPct { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; }
+
+.nextRankRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  margin-bottom: 1rem;
+}
+.nextRankLabel { font-size: 11px; color: #ffffff; flex-shrink: 0; }
+.nextRankName { font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.nextRankBar { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+.nextRankFill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+
+.statsRow { display: flex; align-items: center; }
+.stat { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.statNum { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; line-height: 1; }
+.statLbl { font-size: 10px; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; text-align: center; }
+.statDiv { width: 1px; height: 32px; background: rgba(255,255,255,0.06); }
+
+.sectionLbl {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #fffcfc;
+  margin-bottom: 0.875rem;
+  position: relative;
+  z-index: 1;
+}
+
+.phaseList { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.75rem; position: relative; z-index: 1; }
+
+.phaseCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 0.875rem;
+}
+.phaseCard:hover { transform: translateX(4px); }
+
+.phaseCardLeft { display: flex; align-items: center; gap: 0.875rem; flex: 1; min-width: 0; }
+.phaseCardIcon { font-size: 24px; flex-shrink: 0; }
+.phaseCardTitle { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+.phaseCardTagline { font-size: 11px; color: #ffffff; font-style: italic; line-height: 1.4; }
+
+.phaseCardRight { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.phaseCardPct { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
+.phaseMastered { font-size: 11px; color: #4ade80; font-weight: 700; }
+
+.nutritionCard {
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.nutRow { display: flex; align-items: center; margin-bottom: 1.25rem; }
+.nutItem { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.nutNum { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px; line-height: 1; }
+.nutLbl { font-size: 10px; color: #ffffff; text-transform: uppercase; letter-spacing: 1px; }
+.nutTarget { font-size: 10px; color: #ffffff; }
+.nutDiv { width: 1px; height: 50px; background: rgba(255,255,255,0.06); }
+
+.nutBars { display: flex; flex-direction: column; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.nutBarRow { display: flex; align-items: center; gap: 0.75rem; }
+.nutBarLbl { font-size: 11px; color: #ffffff; width: 55px; flex-shrink: 0; }
+.nutBarBg { flex: 1; height: 6px; background: rgba(255,255,255,0.06); border-radius: 6px; overflow: hidden; }
+.nutBarFill { height: 100%; border-radius: 6px; transition: width 0.8s ease; }
+.nutBarPct { font-size: 11px; color: #ffffff; width: 32px; text-align: right; flex-shrink: 0; }
+
+.nutEmpty { text-align: center; padding: 1rem; color: #555; font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+.nutSetupBtn { background: transparent; border: 1px solid rgba(212,175,55,0.3); color: #D4AF37; padding: 8px 16px; border-radius: 8px; font-size: 13px; cursor: pointer; }
+
+.quoteCard {
+  background: rgba(212,175,55,0.03);
+  border: 1px solid rgba(212,175,55,0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+.quoteMark { font-family: 'Bebas Neue', sans-serif; font-size: 40px; color: rgba(212,175,55,0.2); line-height: 1; margin-bottom: 0.25rem; }
+.quoteText { font-size: 14px; color: #ffffff; line-height: 1.6; font-style: italic; }

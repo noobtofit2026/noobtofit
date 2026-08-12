@@ -1,0 +1,278 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 1.25rem 100px;
+  background: #0a0a0a;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 40% at 50% -5%, rgba(212,175,55,0.06) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1.25rem 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.backBtn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.backBtn:hover { border-color: rgba(212,175,55,0.4); color: #D4AF37; }
+
+.mealIcon { font-size: 12px; color: #ffffff; margin-bottom: 2px; }
+.title { font-family: 'Bebas Neue', sans-serif; font-size: 26px; font-weight: 400; letter-spacing: 2px; color: #fff; }
+
+.mealTotalBadge {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(74,222,128,0.1);
+  border: 1px solid rgba(74,222,128,0.25);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+.mealTotalKcal { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #4ade80; line-height: 1; }
+.mealTotalLbl { font-size: 9px; color: #4ade80; letter-spacing: 1px; }
+
+/* ADDED SECTION */
+.addedSection {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.addedTitle { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #ffffff; margin-bottom: 4px; }
+
+.addedItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.addedItem:last-child { border-bottom: none; padding-bottom: 0; }
+
+.addedLeft { flex: 1; min-width: 0; }
+.addedName { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 2px; }
+.addedMacros { font-size: 11px; color: #555; }
+
+.addedRight { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.addedKcal { font-size: 13px; font-weight: 700; color: #4ade80; }
+.removeBtn { background: transparent; border: none; color: #f87171; font-size: 14px; cursor: pointer; padding: 2px 4px; }
+
+/* SEARCH */
+.searchWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 0 1rem;
+  margin-bottom: 0.875rem;
+  position: relative;
+  z-index: 1;
+  transition: border-color 0.2s;
+}
+.searchWrap:focus-within { border-color: rgba(212,175,55,0.4); }
+
+.searchInput {
+  flex: 1;
+  padding: 14px 0;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+}
+.searchInput::placeholder { color: #ffffff; }
+
+.clearBtn { background: transparent; border: none; color: #555; font-size: 14px; cursor: pointer; padding: 4px; }
+.clearBtn:hover { color: #f87171; }
+
+/* CATEGORY TABS */
+.catRow {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+.catRow::-webkit-scrollbar { display: none; }
+
+.catBtn {
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.catBtn:hover { border-color: rgba(212,175,55,0.25); color: #ffffff; }
+
+.resultCount { font-size: 11px; color: #ffffff; margin-bottom: 0.75rem; position: relative; z-index: 1; }
+
+/* FOOD LIST */
+.foodList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.foodItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: background 0.15s;
+  text-align: left;
+  width: 100%;
+  gap: 0.75rem;
+}
+.foodItem:hover { background: rgba(255,255,255,0.03); }
+
+.foodLeft { display: flex; align-items: center; gap: 0.75rem; flex: 1; min-width: 0; }
+
+.foodCatDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.foodName { font-size: 14px; font-weight: 500; color: #fff; margin-bottom: 2px; }
+.foodMeta { font-size: 11px; color: #ffffff; }
+
+.foodRight { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+.foodKcal { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: '#D4AF37'; color: #D4AF37; line-height: 1; }
+.foodKcalLbl { font-size: 9px; color: #ffffff; letter-spacing: 1px; }
+
+/* ADD PANEL */
+.addPanel {
+  background: rgba(212,175,55,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.qtyRow { display: flex; align-items: center; justify-content: space-between; }
+.qtyLabel { font-size: 12px; color: #ffffff; font-weight: 500; }
+
+.qtyControl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 6px 12px;
+}
+
+.qtyBtn {
+  width: 28px;
+  height: 28px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.qtyBtn:hover { background: rgba(212,175,55,0.2); }
+
+.qtyVal { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #D4AF37; min-width: 48px; text-align: center; }
+
+.macroPreview {
+  display: flex;
+  gap: 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.previewItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 4px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+.previewItem:last-child { border-right: none; }
+
+.previewVal { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.5px; line-height: 1; }
+.previewLbl { font-size: 9px; color: #ffffff; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+.addBtn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #D4AF37, #F0C93A);
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.addBtn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(212,175,55,0.35); }
