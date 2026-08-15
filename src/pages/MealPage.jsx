@@ -9,18 +9,18 @@ const TODAY = new Date().toDateString()
 const MEAL_INFO = {
   breakfast: { title: 'Breakfast' },
   morning_snack: { title: 'Morning Snack' },
-  lunch: { title: 'Lunch'},
+  lunch: { title: 'Lunch' },
   evening_snack: { title: 'Evening Snack' },
   dinner: { title: 'Dinner' },
 }
 
-
-const ALL_FOODS = rawFoods.filter(f =>
-  f.name &&
-  f.kcal > 0 &&
-  f.protein >= 0 &&
-  f.carbs >= 0 &&
-  f.fat >= 0
+const ALL_FOODS = rawFoods.filter(
+  f =>
+    f.name &&
+    f.kcal > 0 &&
+    f.protein >= 0 &&
+    f.carbs >= 0 &&
+    f.fat >= 0
 )
 
 const CAT_COLORS = {
@@ -44,62 +44,133 @@ export default function MealPage() {
   const [intake, setIntake] = useState(() =>
     JSON.parse(localStorage.getItem('ntf_intake_' + TODAY) || '[]')
   )
-const [search, setSearch] = useState('')
-const [selected, setSelected] = useState(null)
-const [qty, setQty] = useState(100)
-const [apiFoods, setApiFoods] = useState([])
-const [loadingFoods, setLoadingFoods] = useState(false)
+
+  const [search, setSearch] = useState('')
+  const [selected, setSelected] = useState(null)
+  const [qty, setQty] = useState(100)
+
+  const [apiFoods, setApiFoods] = useState([])
+  const [loadingFoods, setLoadingFoods] = useState(false)
+
+  // Save intake whenever it changes
   useEffect(() => {
-    localStorage.setItem('ntf_intake_' + TODAY, JSON.stringify(intake))
+    localStorage.setItem(
+      'ntf_intake_' + TODAY,
+      JSON.stringify(intake)
+    )
   }, [intake])
 
+  // Foods already added to this meal
   const mealFoods = intake.filter(f => f.meal === mealId)
+
+  // Meal totals
   const mealTotal = mealFoods.reduce(
-    (a, f) => ({ kcal: a.kcal + f.kcal, protein: a.protein + f.protein }),
+    (a, f) => ({
+      kcal: a.kcal + f.kcal,
+      protein: a.protein + f.protein,
+    }),
     { kcal: 0, protein: 0 }
   )
 
- const filtered = useMemo(() => {
-  if (!search.trim()) return ALL_FOODS
-  return apiFoods
-}, [search, apiFoods])
-useEffect(() => {
-  const query = search.trim()
+  // ============================================================
+  // SEARCH RESULTS
+  // Searches BOTH:
+  // 1. Your local foodData.json
+  // 2. Open Food Facts API
+  // ============================================================
+  const filtered = useMemo(() => {
+    const query = search.trim().toLowerCase()
 
-  if (!query) {
-    setApiFoods([])
-    return
-  }
+    // Nothing typed → show all local foods
+    if (!query) {
+      return ALL_FOODS
+    }
 
-  const timer = setTimeout(async () => {
-    setLoadingFoods(true)
+    // Search local foodData.json
+    const localResults = ALL_FOODS.filter(food =>
+      food.name.toLowerCase().includes(query)
+    )
 
-    const results = await searchOpenFoodFacts(query)
+    // Combine local + API results
+    const combined = [...localResults, ...apiFoods]
 
-    setApiFoods(results)
-    setLoadingFoods(false)
-  }, 700)
+    // Remove duplicate names
+    const unique = combined.filter(
+      (food, index, self) =>
+        index ===
+        self.findIndex(
+          f =>
+            f.name &&
+            food.name &&
+            f.name.toLowerCase() === food.name.toLowerCase()
+        )
+    )
 
-  return () => clearTimeout(timer)
-}, [search])
+    return unique
+  }, [search, apiFoods])
 
+  // ============================================================
+  // OPEN FOOD FACTS SEARCH
+  // ============================================================
+  useEffect(() => {
+    const query = search.trim()
+
+    // Empty search → clear API results
+    if (!query) {
+      setApiFoods([])
+      setLoadingFoods(false)
+      return
+    }
+
+    const timer = setTimeout(async () => {
+      try {
+        setLoadingFoods(true)
+
+        const results = await searchOpenFoodFacts(query)
+
+        // Make sure we always store an array
+        setApiFoods(Array.isArray(results) ? results : [])
+      } catch (error) {
+        console.error('Open Food Facts search error:', error)
+
+        // Don't break local search if API fails
+        setApiFoods([])
+      } finally {
+        setLoadingFoods(false)
+      }
+    }, 700)
+
+    return () => clearTimeout(timer)
+  }, [search])
+
+  // ============================================================
+  // ADD FOOD
+  // ============================================================
   function addFood(food) {
     const ratio = qty / 100
+
     const item = {
       id: Date.now(),
       meal: mealId,
       name: food.name,
       qty,
       kcal: Math.round(food.kcal * ratio),
-      protein: Math.round(food.protein * ratio * 10) / 10,
-      carbs: Math.round(food.carbs * ratio * 10) / 10,
-      fat: Math.round(food.fat * ratio * 10) / 10,
+      protein:
+        Math.round(food.protein * ratio * 10) / 10,
+      carbs:
+        Math.round(food.carbs * ratio * 10) / 10,
+      fat:
+        Math.round(food.fat * ratio * 10) / 10,
     }
+
     setIntake(p => [...p, item])
     setSelected(null)
     setQty(100)
   }
 
+  // ============================================================
+  // REMOVE FOOD
+  // ============================================================
   function removeFood(id) {
     setIntake(p => p.filter(f => f.id !== id))
   }
@@ -108,47 +179,103 @@ useEffect(() => {
     <div className={styles.page}>
       <div className={styles.bg} />
 
-      {/* TOP BAR */}
+      {/* ========================================================
+          TOP BAR
+      ======================================================== */}
       <div className={styles.topbar}>
-        <button className={styles.backBtn} onClick={() => navigate('/fuel/tracker')}>←</button>
+        <button
+          className={styles.backBtn}
+          onClick={() => navigate('/fuel/tracker')}
+        >
+          ←
+        </button>
+
         <div className={styles.topInfo}>
-          <h1 className={styles.title}>{meal.title.toUpperCase()}</h1>
+          <h1 className={styles.title}>
+            {meal.title.toUpperCase()}
+          </h1>
         </div>
+
         {mealFoods.length > 0 && (
           <div className={styles.totalBadge}>
-            <span className={styles.totalKcal}>{Math.round(mealTotal.kcal)}</span>
-            <span className={styles.totalLbl}>kcal</span>
+            <span className={styles.totalKcal}>
+              {Math.round(mealTotal.kcal)}
+            </span>
+
+            <span className={styles.totalLbl}>
+              kcal
+            </span>
           </div>
         )}
       </div>
 
-      {/* ADDED FOODS */}
+      {/* ========================================================
+          ADDED FOODS
+      ======================================================== */}
       {mealFoods.length > 0 && (
         <div className={styles.addedSection}>
-          <p className={styles.addedTitle}>ADDED TO {meal.title.toUpperCase()}</p>
+          <p className={styles.addedTitle}>
+            ADDED TO {meal.title.toUpperCase()}
+          </p>
+
           {mealFoods.map(f => (
-            <div key={f.id} className={styles.addedItem}>
+            <div
+              key={f.id}
+              className={styles.addedItem}
+            >
               <div className={styles.addedLeft}>
-                <p className={styles.addedName}>{f.name}</p>
+                <p className={styles.addedName}>
+                  {f.name}
+                </p>
+
                 <p className={styles.addedMacros}>
                   {f.qty}g · P {f.protein}g · C {f.carbs}g · F {f.fat}g
                 </p>
               </div>
+
               <div className={styles.addedRight}>
-                <span className={styles.addedKcal}>{f.kcal} kcal</span>
-                <button className={styles.removeBtn} onClick={() => removeFood(f.id)}>✕</button>
+                <span className={styles.addedKcal}>
+                  {f.kcal} kcal
+                </span>
+
+                <button
+                  className={styles.removeBtn}
+                  onClick={() => removeFood(f.id)}
+                >
+                  ✕
+                </button>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* SEARCH BAR */}
+      {/* ========================================================
+          SEARCH BAR
+      ======================================================== */}
       <div className={styles.searchWrap}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <circle cx="11" cy="11" r="7" stroke="#ffffff" strokeWidth="2"/>
-          <path d="M16.5 16.5L21 21" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"/>
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <circle
+            cx="11"
+            cy="11"
+            r="7"
+            stroke="#ffffff"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M16.5 16.5L21 21"
+            stroke="#ffffff"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
         </svg>
+
         <input
           className={styles.searchInput}
           placeholder="Search by Food Name / Dish"
@@ -156,74 +283,197 @@ useEffect(() => {
           onChange={e => setSearch(e.target.value)}
           autoFocus
         />
+
         {search && (
-          <button className={styles.clearBtn} onClick={() => setSearch('')}>✕</button>
+          <button
+            className={styles.clearBtn}
+            onClick={() => setSearch('')}
+          >
+            ✕
+          </button>
         )}
       </div>
 
-      <p className={styles.resultCount}>{filtered.length} foods found</p>
+      {/* ========================================================
+          RESULT COUNT
+      ======================================================== */}
+      <p className={styles.resultCount}>
+        {loadingFoods
+          ? 'Searching...'
+          : `${filtered.length} foods found`}
+      </p>
 
-      {/* FOOD LIST */}
+      {/* ========================================================
+          FOOD LIST
+      ======================================================== */}
       <div className={styles.foodList}>
-        {filtered.map(food => {
-          const isSel = selected?.name === food.name
+        {filtered.map((food, index) => {
+          const isSel =
+            selected?.name === food.name
+
           return (
-            <div key={food.name}>
+            <div
+              key={`${food.name}-${index}`}
+            >
               <button
                 className={styles.foodItem}
-                style={isSel ? {
-                  borderColor: 'rgba(212,175,55,0.35)',
-                  background: 'rgba(212,175,55,0.04)'
-                } : {}}
+                style={
+                  isSel
+                    ? {
+                        borderColor:
+                          'rgba(212,175,55,0.35)',
+                        background:
+                          'rgba(212,175,55,0.04)',
+                      }
+                    : {}
+                }
                 onClick={() => {
-                  setSelected(isSel ? null : food)
+                  setSelected(
+                    isSel ? null : food
+                  )
                   setQty(100)
                 }}
               >
                 <div className={styles.foodLeft}>
                   <div
                     className={styles.foodDot}
-                    style={{ background: CAT_COLORS[food.category] || '#ffffff' }}
+                    style={{
+                      background:
+                        CAT_COLORS[food.category] ||
+                        '#ffffff',
+                    }}
                   />
+
                   <div>
-                    <p className={styles.foodName}>{food.name}</p>
+                    <p className={styles.foodName}>
+                      {food.name}
+                    </p>
+
                     <p className={styles.foodMeta}>
                       per 100g · P {food.protein}g · C {food.carbs}g · F {food.fat}g
                     </p>
                   </div>
                 </div>
+
                 <div className={styles.foodRight}>
-                  <p className={styles.foodKcal}>{food.kcal}</p>
-                  <p className={styles.foodKcalLbl}>kcal</p>
+                  <p className={styles.foodKcal}>
+                    {food.kcal}
+                  </p>
+
+                  <p className={styles.foodKcalLbl}>
+                    kcal
+                  </p>
                 </div>
               </button>
 
+              {/* ==================================================
+                  ADD FOOD PANEL
+              ================================================== */}
               {isSel && (
                 <div className={styles.addPanel}>
                   <div className={styles.qtyRow}>
-                    <p className={styles.qtyLabel}>Quantity</p>
+                    <p className={styles.qtyLabel}>
+                      Quantity
+                    </p>
+
                     <div className={styles.qtyControl}>
-                      <button className={styles.qtyBtn}
-                        onClick={() => setQty(q => Math.max(10, q - 10))}>−</button>
-                      <span className={styles.qtyVal}>{qty}g</span>
-                      <button className={styles.qtyBtn}
-                        onClick={() => setQty(q => q + 10)}>+</button>
+                      <button
+                        className={styles.qtyBtn}
+                        onClick={() =>
+                          setQty(q =>
+                            Math.max(10, q - 10)
+                          )
+                        }
+                      >
+                        −
+                      </button>
+
+                      <span className={styles.qtyVal}>
+                        {qty}g
+                      </span>
+
+                      <button
+                        className={styles.qtyBtn}
+                        onClick={() =>
+                          setQty(q => q + 10)
+                        }
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
+
+                  {/* MACRO PREVIEW */}
                   <div className={styles.macroPreview}>
                     {[
-                      { label: 'Kcal', val: Math.round(food.kcal * qty / 100), color: '#D4AF37' },
-                      { label: 'Protein', val: `${Math.round(food.protein * qty / 100 * 10) / 10}g`, color: '#4ade80' },
-                      { label: 'Carbs', val: `${Math.round(food.carbs * qty / 100 * 10) / 10}g`, color: '#60a5fa' },
-                      { label: 'Fat', val: `${Math.round(food.fat * qty / 100 * 10) / 10}g`, color: '#a78bfa' },
+                      {
+                        label: 'Kcal',
+                        val: Math.round(
+                          food.kcal * qty / 100
+                        ),
+                        color: '#D4AF37',
+                      },
+                      {
+                        label: 'Protein',
+                        val: `${Math.round(
+                          food.protein *
+                            qty /
+                            100 *
+                            10
+                        ) / 10}g`,
+                        color: '#4ade80',
+                      },
+                      {
+                        label: 'Carbs',
+                        val: `${Math.round(
+                          food.carbs *
+                            qty /
+                            100 *
+                            10
+                        ) / 10}g`,
+                        color: '#60a5fa',
+                      },
+                      {
+                        label: 'Fat',
+                        val: `${Math.round(
+                          food.fat *
+                            qty /
+                            100 *
+                            10
+                        ) / 10}g`,
+                        color: '#a78bfa',
+                      },
                     ].map(m => (
-                      <div key={m.label} className={styles.previewItem}>
-                        <span className={styles.previewVal} style={{ color: m.color }}>{m.val}</span>
-                        <span className={styles.previewLbl}>{m.label}</span>
+                      <div
+                        key={m.label}
+                        className={styles.previewItem}
+                      >
+                        <span
+                          className={
+                            styles.previewVal
+                          }
+                          style={{
+                            color: m.color,
+                          }}
+                        >
+                          {m.val}
+                        </span>
+
+                        <span
+                          className={
+                            styles.previewLbl
+                          }
+                        >
+                          {m.label}
+                        </span>
                       </div>
                     ))}
                   </div>
-                  <button className={styles.addBtn} onClick={() => addFood(food)}>
+
+                  <button
+                    className={styles.addBtn}
+                    onClick={() => addFood(food)}
+                  >
                     + Add {food.name}
                   </button>
                 </div>
@@ -232,12 +482,25 @@ useEffect(() => {
           )
         })}
 
-        {filtered.length === 0 && (
-          <div className={styles.noResult}>
-            <p>No food found for "{search}"</p>
-            <p className={styles.noResultSub}>Try a different name or dish</p>
-          </div>
-        )}
+        {/* ======================================================
+            NO RESULTS
+        ====================================================== */}
+        {filtered.length === 0 &&
+          !loadingFoods && (
+            <div className={styles.noResult}>
+              <p>
+                No food found for "{search}"
+              </p>
+
+              <p
+                className={
+                  styles.noResultSub
+                }
+              >
+                Try a different name or dish
+              </p>
+            </div>
+          )}
       </div>
     </div>
   )
